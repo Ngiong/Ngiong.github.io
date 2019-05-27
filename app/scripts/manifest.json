@@ -1,3 +1,7 @@
 {
+  "short_name": "Test Push Notification",
+  "name": "Push Notification",
+  "icons": [],
+  "start_url": "index.html",
   "gcm_sender_id": "1001890722655"
 }
