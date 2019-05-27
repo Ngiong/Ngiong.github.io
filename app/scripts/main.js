@@ -134,7 +134,16 @@ function updateSubscriptionOnServer(subscription) {
     document.querySelector('.js-subscription-details');
 
   if (subscription) {
-    subscriptionJson.textContent = JSON.stringify(subscription);
+    let key = subscription.getKey && subscription.getKey('p256dh')
+    let auth = subscription.getKey && subscription.getKey('auth')
+
+    let tmp = JSON.stringify({
+      endpoint: subscription.endpoint,
+      key: key && btoa(String.fromCharCode.apply(null, new Uint8Array(key))),
+      auth: auth && btoa(String.fromCharCode.apply(null, new Uint8Array(auth)))
+    })
+
+    subscriptionJson.textContent = tmp;
     subscriptionDetails.classList.remove('is-invisible');
   } else {
     subscriptionDetails.classList.add('is-invisible');
